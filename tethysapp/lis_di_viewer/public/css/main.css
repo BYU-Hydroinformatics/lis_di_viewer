@@ -1,0 +1,25 @@
+#app-content-wrapper #app-content{
+    height: 100%;
+    /*padding-top: 60px;*/
+    /*padding-bottom: 50px;*/
+}
+
+#inner-app-content{
+    padding: 5px;
+}
+.btn-run{
+    position:relative;
+    top:-5px;
+}
+.btn-stop{
+    position:relative;
+    top:-5px;
+}
+.btn-increase{
+    position:relative;
+    top:-5px;
+}
+.btn-decrease{
+    position:relative;
+    top:-5px;
+}

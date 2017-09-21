@@ -1,0 +1,136 @@
+{% extends "lis_di_viewer/base.html" %}
+{% load tethys_gizmos %}
+
+{% block styles %}
+{{ block.super }}
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="https://openlayers.org/en/v4.3.1/css/ol.css" type="text/css">
+{% endblock %}
+
+{% block global_scripts %}
+{{block.super}}
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="https://openlayers.org/en/v4.3.1/build/ol.js"></script>
+{% endblock %}
+
+{% block app_navigation_items %}
+<br>
+{% gizmo select_layer %}
+<br>
+<h4>Legend</h4>
+<div>
+    <svg width="20" height="20" viewPort="0 0 20 20" version="1.1"
+         xmlns="http://www.w3.org/2000/svg">
+        <polygon points="0 0, 20 0, 20 20,0 20" stroke="#ff0000" fill="#ff0000" stroke-width="2"/>
+    </svg>
+    0.0 to 0.3
+</div>
+<div>
+    <svg width="20" height="20" viewPort="0 0 20 20" version="1.1"
+         xmlns="http://www.w3.org/2000/svg">
+        <polygon points="0 0, 20 0, 20 20,0 20" stroke="#faff00" fill="#faff00" stroke-width="2"/>
+    </svg>
+    0.3 to 0.5
+</div>
+<div>
+    <svg width="20" height="20" viewPort="0 0 20 20" version="1.1"
+         xmlns="http://www.w3.org/2000/svg">
+        <polygon points="0 0, 20 0, 20 20,0 20" stroke="#6d701f" fill="#6d701f" stroke-width="2"/>
+    </svg>
+    0.5 to 0.7
+</div>
+<div>
+    <svg width="20" height="20" viewPort="0 0 20 20" version="1.1"
+         xmlns="http://www.w3.org/2000/svg">
+        <polygon points="0 0, 20 0, 20 20,0 20" stroke="#1f7034" fill="#1f7034" stroke-width="2"/>
+    </svg>
+    0.7 to 0.9
+</div>
+<div>
+    <svg width="20" height="20" viewPort="0 0 20 20" version="1.1"
+         xmlns="http://www.w3.org/2000/svg">
+        <polygon points="0 0, 20 0, 20 20,0 20" stroke="#238baa" fill="#238baa" stroke-width="2"/>
+    </svg>
+    0.9 to 1.0
+</div>
+<div>
+    <svg width="20" height="20" viewPort="0 0 20 20" version="1.1"
+         xmlns="http://www.w3.org/2000/svg">
+        <polygon points="0 0, 20 0, 20 20,0 20" stroke="#0004ff" fill="#0004ff" stroke-width="2"/>
+    </svg>
+    1.0
+</div>
+{% endblock %}
+
+{% block header_buttons %}
+<div class="header-button glyphicon-button" data-toggle="tooltip" data-placement="bottom" title="Help">
+    <a data-toggle="modal" data-target="#help-modal"><span class="glyphicon glyphicon-question-sign"></span></a>
+</div>
+{% endblock %}
+
+{% block app_content %}
+<style>
+    #map{
+        width:100%;
+        height:90%;
+    }
+    .map-view-legend {
+        bottom: 85px;
+        right: 5px;
+        width: 170px;
+        max-height: 90%;
+        overflow-y: auto;
+        margin: 5px;
+        color:white;
+        background: #286090;
+        border: 1px #ddd solid;
+        z-index: 999;
+    }
+</style>
+<br>
+<div id="control-bar" class="control-bar row">
+    <div class="animation col-md-2">
+        <!--<div class="btn-toolbar" role="toolbar" align="center"></div>-->
+        <div class="btn btn-success btn-group btn-xs btn-run" role="group"><span class="glyphicon glyphicon-play"></span></div>
+        <div class="btn btn-danger btn-group btn-xs btn-stop" role="group"><span class="glyphicon glyphicon-pause"></span></div>
+        <div class="btn btn-danger btn-group btn-xs btn-decrease" role="group"><span class="glyphicon glyphicon-fast-backward"></span></div>
+        <div class="btn btn-success btn-group btn-xs btn-increase" role="group"><span class="glyphicon glyphicon-fast-forward"></span></div>
+
+    </div>
+    <div id="slider" class="col-md-9"></div>
+</div>
+<div class="row">
+    <div class="col-md-5">     <label id="speed-label" for="speed">Animation Speed(fps):</label>
+        <input type="text" id="speed" readonly style="border:0; color:#f6931f; font-weight:normal;" value="1"></div>
+    <div class="col-md-3"><label id="label" for="lis-date">Day:</label>
+        <input type="text" id="lis-date" readonly style="border:0; color:#f6931f; font-weight:normal;" value="2001 January 1"></div>
+</div>
+<div id="map" class="map"></div>
+<div id="popup" class="popup"></div>
+<div id="layers" name="layers" data-slider-max="{{slider_max}}" style="display:none;"></div>
+{% endblock %}
+
+{# Use the after_app_content block for modals #}
+{% block after_app_content %}
+<!-- Example Modal -->
+<div class="modal fade" id="help-modal" tabindex="-1" role="dialog" aria-labelledby="help-modal-label">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h5 class="modal-title" id="help-modal-label">Help Modal</h5>
+            </div>
+            <div class="modal-body">
+                <p>Move the slider to view changes in the drought indices</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block app_actions %}
+{% endblock %}
