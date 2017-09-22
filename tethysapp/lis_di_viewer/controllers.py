@@ -13,10 +13,10 @@ def home(request):
     """
     # geotiff_dir = '/home/rheas/di_rasters'
     # sorted_files = sorted(os.listdir(geotiff_dir), key=lambda x: datetime.datetime.strptime(x, '%Y_%m_%d.tif'))
-    
+
     di_layer_options = []
 
-    for year in range(2001, 2012):
+    for year in range(2001, 2017):
         start_date = '01/01/' + str(year)
         date_str = datetime.datetime.strptime(start_date, "%m/%d/%Y")
         days = 1

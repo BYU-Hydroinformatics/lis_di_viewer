@@ -104,6 +104,6 @@ def upload_tiff(dir, region, geoserver_rest_url, workspace, uname, pwd):
                      auth=(uname, pwd))  # Creating the resource on the geoserver
 
 
-#extractRasters('/home/rheas/di_nc','/home/rheas/di_rasters')
-#upload_tiff('/home/rheas/di_rasters','hkh','http://tethys.byu.edu:8181/geoserver/rest/','hkh_di_index','admin','geoserver')
+#extractRasters('/home/rheas/di_nc2','/home/rheas/di_rasters2')
+#upload_tiff('/home/rheas/di_rasters2','hkh','http://tethys.byu.edu:8181/geoserver/rest/','hkh_di_index','admin','geoserver')
 
