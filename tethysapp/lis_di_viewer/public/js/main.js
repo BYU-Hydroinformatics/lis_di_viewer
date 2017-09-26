@@ -251,12 +251,12 @@ var LIBRARY_OBJECT = (function() {
         <RasterSymbolizer> \
         <ColorMap>\
         <ColorMapEntry color="#000000" quantity="-999" label="nodata" opacity="0.0" />\
-            <ColorMapEntry color="#ff0000" quantity="0.1" label="1" opacity="0.7" />\
-            <ColorMapEntry color="#faff00" quantity="0.3" label="1" opacity="0.7" />\
-            <ColorMapEntry color="#6d701f" quantity="0.5" label="1" opacity="0.7" />\
-            <ColorMapEntry color="#1f7034" quantity="0.7" label="1" opacity="0.7" />\
-            <ColorMapEntry color="#238baa" quantity="0.9" label="1" opacity="0.7" />\
-            <ColorMapEntry color="#0004ff" quantity="1.0" label="1" opacity="0.7" /></ColorMap>\
+            <ColorMapEntry color="#8c510a" quantity="0.1" label="1" opacity="0.7" />\
+            <ColorMapEntry color="#d8b365" quantity="0.3" label="1" opacity="0.7" />\
+            <ColorMapEntry color="#f6e8c3" quantity="0.5" label="1" opacity="0.7" />\
+            <ColorMapEntry color="#c7eae5" quantity="0.7" label="1" opacity="0.7" />\
+            <ColorMapEntry color="#5ab4ac" quantity="0.9" label="1" opacity="0.7" />\
+            <ColorMapEntry color="#01665e" quantity="1.0" label="1" opacity="0.7" /></ColorMap>\
         </RasterSymbolizer>\
         </Rule>\
         </FeatureTypeStyle>\
@@ -288,12 +288,12 @@ var LIBRARY_OBJECT = (function() {
         <RasterSymbolizer> \
         <ColorMap> \
         <ColorMapEntry color="#000000" quantity="-999" label="nodata" opacity="0.0" />\
-            <ColorMapEntry color="#ff0000" quantity="0.1" label="1" opacity="0.7" />\
-            <ColorMapEntry color="#faff00" quantity="0.3" label="1" opacity="0.7" />\
-            <ColorMapEntry color="#6d701f" quantity="0.5" label="1" opacity="0.7" />\
-            <ColorMapEntry color="#1f7034" quantity="0.7" label="1" opacity="0.7" />\
-            <ColorMapEntry color="#238baa" quantity="0.9" label="1" opacity="0.7" />\
-            <ColorMapEntry color="#0004ff" quantity="1.0" label="1" opacity="0.7" /></ColorMap>\
+            <ColorMapEntry color="#8c510a" quantity="0.1" label="1" opacity="0.7" />\
+            <ColorMapEntry color="#d8b365" quantity="0.3" label="1" opacity="0.7" />\
+            <ColorMapEntry color="#f6e8c3" quantity="0.5" label="1" opacity="0.7" />\
+            <ColorMapEntry color="#c7eae5" quantity="0.7" label="1" opacity="0.7" />\
+            <ColorMapEntry color="#5ab4ac" quantity="0.9" label="1" opacity="0.7" />\
+            <ColorMapEntry color="#01665e" quantity="1.0" label="1" opacity="0.7" /></ColorMap>\
         </RasterSymbolizer>\
         </Rule>\
         </FeatureTypeStyle>\
@@ -304,7 +304,12 @@ var LIBRARY_OBJECT = (function() {
         wms_source.updateParams({'LAYERS':layer_name,'SLD_BODY':sld_string});
 
     };
-
+// <ColorMapEntry color="#d3a96a" quantity="0.1" label="1" opacity="0.7" />\
+//             <ColorMapEntry color="#c6ac88" quantity="0.3" label="1" opacity="0.7" />\
+//             <ColorMapEntry color="#b6b0a5" quantity="0.5" label="1" opacity="0.7" />\
+//             <ColorMapEntry color="#a0b3c2" quantity="0.7" label="1" opacity="0.7" />\
+//             <ColorMapEntry color="#81b7df" quantity="0.9" label="1" opacity="0.7" />\
+//             <ColorMapEntry color="#4cbbfc" quantity="1.0" label="1" opacity="0.7" /></ColorMap>\
     /************************************************************************
      *                        DEFINE PUBLIC INTERFACE
      *************************************************************************/
@@ -322,6 +327,13 @@ var LIBRARY_OBJECT = (function() {
     $(function() {
         init_all();
         $("#speed").val((1/(animationDelay/1000)).toFixed(2));
+        var colors = chroma.scale(['#d3a96a','#4CBBFC']).mode('lab').correctLightness().colors(6);
+        console.log(colors);
+        var sld_color_string;
+            // colors.forEach(function(color,i){
+            //     var color_map_entry = '<ColorMapEntry color="'+color+'" quantity="'+scale[i]+'" label="label'+i+'" opacity="0.7"/>';
+            //     sld_color_string += color_map_entry;
+            // });
 
         $("#select_layer").change(function(){
             add_wms();
